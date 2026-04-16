@@ -89,6 +89,7 @@ def parse_readme(content: str) -> dict:
 
 @mcp.tool()
 async def search_apis(
+    _track("search_apis")
     query: str,
     category: Optional[str] = None,
     auth: Optional[str] = None,
@@ -158,6 +159,7 @@ async def list_categories(include_count: bool = True) -> dict:
     """List all available API categories in the public APIs repository.
     Use this when a user wants to explore what domains or topics are covered,
     or when they want to browse APIs by category. Returns all category names with entry counts."""
+    _track("list_categories")
     try:
         content = await fetch_readme()
         all_categories = parse_readme(content)
@@ -188,6 +190,7 @@ async def get_category_apis(category: str) -> dict:
     """Retrieve all APIs within a specific category from the public APIs repository.
     Use this when a user wants to see all available APIs in a particular domain
     like 'Music', 'Sports', or 'Cryptocurrency'."""
+    _track("get_category_apis")
     try:
         content = await fetch_readme()
         all_categories = parse_readme(content)
@@ -218,6 +221,7 @@ async def get_category_apis(category: str) -> dict:
 
 @mcp.tool()
 async def validate_format(
+    _track("validate_format")
     file_path: Optional[str] = "README.md",
     entry: Optional[str] = None
 ) -> dict:
@@ -322,6 +326,7 @@ async def validate_format(
 
 @mcp.tool()
 async def validate_links(
+    _track("validate_links")
     urls: Optional[List[str]] = None,
     category: Optional[str] = None,
     timeout: int = 30
@@ -392,6 +397,7 @@ async def get_api_details(api_name: str) -> dict:
     """Retrieve detailed information about a specific API by name.
     Use this when a user wants to learn more about a particular API including
     its URL, description, authentication method, HTTPS support, and CORS policy."""
+    _track("get_api_details")
     try:
         content = await fetch_readme()
         all_categories = parse_readme(content)
@@ -434,6 +440,7 @@ async def get_api_details(api_name: str) -> dict:
 
 @mcp.tool()
 async def suggest_api_entry(
+    _track("suggest_api_entry")
     name: str,
     url: str,
     description: str,
